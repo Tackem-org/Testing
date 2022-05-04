@@ -34,8 +34,9 @@ release:
   name_template: "{{.ProjectName}}-v{{.Version}}"
   extra_files:
     - glob: ./LICENSE.md
+      name_template: "LICENSE_v{{.Version}}.md"
     - glob: ./README.md
-      name_template: "./README_v{{.Version}}.md"
+      name_template: "README_v{{.Version}}.md"
 # dockers:
 # - image_templates:
 #     - "ghcr.io/Tackem-org/Testing:latest"
