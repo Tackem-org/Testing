@@ -24,7 +24,7 @@ builds:
 archives:
   -
     format: binary
-    name_template: "{{ .Binary }}_v{{ .Version }}_{{ .Os }}_{{ .Arch }}"
+    name_template: "{{ .Binary }}_{{ .Os }}_{{ .Arch }}"
 checksum:
   name_template: '{{ .ProjectName }}_v{{ .Version }}_checksums.txt'
 snapshot:
@@ -55,7 +55,3 @@ snapshot:
 #   - deb
 #   - rpm
 #   - apk
-source:
-  enabled: true
-  name_template: '{{ .ProjectName }}_v{{ .Version }}-src'
-  prefix_template: '{{ .ProjectName }}-v{{ .Version }}/'
