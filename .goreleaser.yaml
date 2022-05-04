@@ -1,5 +1,3 @@
-# This is an example .goreleaser.yml file with some sensible defaults.
-# Make sure to check the documentation at https://goreleaser.com
 project_name: TackemTesting
 env:
   - GO111MODULE=on
@@ -8,17 +6,56 @@ before:
     - go mod tidy
     - go generate ./...
 builds:
-  - env:
-    - CGO_ENABLED=0
-  - goos:
-    - linux
-  - goarch:
-    - amd64
-  - goamd64:
-    - v1
+  -
+    id: build
+    binary: "{{ .ProjectName}}_v{{ .Version }}"
+    env:
+      - CGO_ENABLED=0
+    goos:
+      - linux
+      - darwin
+      - windows
+      - freebsd
+    goarch:
+      - amd64
+    ldflags:
+      # - "-s -w -X serviceController.Version={{.Version}} -X serviceController.Commit={{.Commit}} -X serviceController.CommitDate={{.Date}}"
+      - "-s -w -X main.Version={{.Version}} -X main.Commit={{.Commit}} -X main.CommitDate={{.Date}}"
 archives:
-  - format: binary
+  -
+    format: binary
+    name_template: "{{ .Binary }}_v{{ .Version }}_{{ .Os }}_{{ .Arch }}"
 checksum:
-  name_template: 'checksums.txt'
+  name_template: '{{ .ProjectName }}_v{{ .Version }}_checksums.txt'
 snapshot:
-  name_template: '{{ incpatch .Version }}'
+  name_template: '{{ incpatch  .Version }}-devel'
+# dockers:
+# - image_templates:
+#     - "ghcr.io/Tackem-org/Testing:latest"
+#     - "ghcr.io/Tackem-org/Testing:{{ .Version }}"
+#     - "ghcr.io/Tackem-org/Testing:{{ .Major }}"
+#     - "ghcr.io/Tackem-org/Testing:{{ .Major }}.{{.Minor}}"
+#   dockerfile: goreleaser.dockerfile
+#   build_flag_templates:
+#   - "--label=org.opencontainers.image.title={{ .ProjectName }}"
+#   - "--label=org.opencontainers.image.description={{ .ProjectName }}"
+#   - "--label=org.opencontainers.image.url=https://github.com/Tackem-org/Testing"
+#   - "--label=org.opencontainers.image.source=https://github.com/Tackem-org/Testing"
+#   - "--label=org.opencontainers.image.version={{ .Version }}"
+#   - "--label=org.opencontainers.image.created={{ time "2006-01-02T15:04:05Z07:00" }}"
+#   - "--label=org.opencontainers.image.revision={{ .FullCommit }}"
+#   - "--label=org.opencontainers.image.licenses=GPLv2"
+#   - "--platform={{ .Os }}/{{ .Arch }}"
+# nfpms:
+# - maintainer: Gary The Brown <garybrownsunderland@gmail.com>
+#   description: Test project.
+#   homepage: https://github.com/Tackem-org/Testing
+#   license: GPLv2
+#   formats:
+#   - deb
+#   - rpm
+#   - apk
+source:
+  enabled: true
+  name_template: '{{ .ProjectName }}_v{{ .Version }}-src'
+  prefix_template: '{{ .ProjectName }}-v{{ .Version }}/'
