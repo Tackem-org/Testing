@@ -34,13 +34,13 @@ jobs:
         run: |
           go mod tidy
           go test -v ./...
-      -
-        name: Docker Login
-        uses: docker/login-action@v1
-        with:
-          registry: ghcr.io
-          username: ${{ github.repository_owner }}
-          password: ${{ secrets.GH_PAT }}
+      # -
+      #   name: Docker Login
+      #   uses: docker/login-action@v1
+      #   with:
+      #     registry: ghcr.io
+      #     username: ${{ github.repository_owner }}
+      #     password: ${{ secrets.GH_PAT }}
       -
         name: Run GoReleaser
         uses: goreleaser/goreleaser-action@v2
