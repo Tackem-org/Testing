@@ -1,4 +1,4 @@
-project_name: TackemTesting
+project_name: Tackem-Testing
 env:
   - GO111MODULE=on
 before:
@@ -6,8 +6,7 @@ before:
     - go mod tidy
     - go generate ./...
 builds:
-  -
-    id: build
+  - id: build
     binary: "{{ .ProjectName}}_v{{ .Version }}"
     env:
       - CGO_ENABLED=0
@@ -22,8 +21,7 @@ builds:
       # - "-s -w -X serviceController.Version={{.Version}} -X serviceController.Commit={{.Commit}} -X serviceController.CommitDate={{.Date}}"
       - "-s -w -X main.Version={{.Version}} -X main.Commit={{.Commit}} -X main.CommitDate={{.Date}}"
 archives:
-  -
-    format: binary
+  - format: binary
     name_template: "{{ .Binary }}_{{ .Os }}_{{ .Arch }}"
 checksum:
   name_template: '{{ .ProjectName }}_v{{ .Version }}_checksums.txt'
@@ -34,9 +32,9 @@ release:
   name_template: "{{.ProjectName}}-v{{.Version}}"
   extra_files:
     - glob: ./LICENSE.md
-      name_template: "LICENSE_v{{.Version}}.md"
+      name_template: "{{.ProjectName}}_v{{.Version}}_LICENSE.md"
     - glob: ./README.md
-      name_template: "README_v{{.Version}}.md"
+      name_template: "{{.ProjectName}}_v{{.Version}}_README.md"
 # dockers:
 # - image_templates:
 #     - "ghcr.io/Tackem-org/Testing:latest"
