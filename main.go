@@ -10,4 +10,5 @@ var (
 
 func main() {
 	fmt.Println("Testing", Version, Commit, CommitDate)
+	fmt.Println("Testing2", Version, Commit, CommitDate)
 }
