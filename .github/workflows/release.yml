@@ -14,7 +14,6 @@ jobs:
         with:
           fetch-depth: 0
           path: main
-          working-directory: ./main
       - name: Clone Global Repo
         uses: actions/checkout@v3
         with:
@@ -32,7 +31,6 @@ jobs:
         with:
           path: ~/go/pkg/mod
           key: ${{ runner.os }}-go-${{ hashFiles('**/go.sum') }}
-          working-directory: ./main
           restore-keys: |
             ${{ runner.os }}-go-
       # -
