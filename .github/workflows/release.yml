@@ -9,13 +9,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       -
-        name: Checkout
+        name: Checkout Repo
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
           path: main
           working-directory: ./main
-      - name: Clone supercharge docs repository
+      - name: Clone Global Repo
         uses: actions/checkout@v3
         with:
           repository: Tackem-org/Global
@@ -56,6 +56,6 @@ jobs:
         with:
           version: latest
           args: release --rm-dist
-          working-directory: ./main
+          workdir: ./main
         env:
           GITHUB_TOKEN: ${{ secrets.GH_PAT }}
