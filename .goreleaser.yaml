@@ -34,7 +34,7 @@ builds:
 
     mod_timestamp: "{{ .CommitTimestamp }}"
     ldflags:
-      - "-s -w -X main.Version={{.Version}} -X main.Commit={{.Commit}} -X main.CommitDate={{.CommitDate}}"
+      - "-s -w -X main.Version={{.Version}}"
 archives:
   - format: binary
     name_template: "{{ .Binary }}_{{ .Os }}_{{ .Arch }}{{ with .Arm }}v{{ . }}{{ end }}"
