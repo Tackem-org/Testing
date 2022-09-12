@@ -33,13 +33,13 @@ jobs:
           key: ${{ runner.os }}-go-${{ hashFiles('**/go.sum') }}
           restore-keys: |
             ${{ runner.os }}-go-
-      # -
-      #   name: Tests
-      #   run: |
-      #     go mod tidy
-      #     go test -v ./...
-      #   with:
-      #     working-directory: ./main
+      -
+        name: Tests
+        run: |
+          go mod tidy
+          go test -v ./...
+        with:
+          working-directory: ./main
       # -
       #   name: Docker Login
       #   uses: docker/login-action@v1
@@ -56,4 +56,6 @@ jobs:
           args: release --rm-dist
           workdir: ./main
         env:
-          GITHUB_TOKEN: ${{ secrets.GH_PAT }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+# TODO MAKE THIS ACTION INCLUDE TESTS FOR FORMATTING AND TESTING ETC NEED TO PASS THEM AND MAKE SURE IT WORKS, COPY TO User BEFORE GOING BACK TO TESTS IN MASTER
