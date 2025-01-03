@@ -1,6 +1,6 @@
 module github.com/Tackem-org/testing
 
-go 1.23.4
+go 1.23
 
 replace github.com/Tackem-org/Global => ../Global
 
