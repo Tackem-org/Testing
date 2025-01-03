@@ -4,7 +4,7 @@ go 1.23
 
 replace github.com/Tackem-org/Global => ../Global
 
-require github.com/Tackem-org/Global v0.0.0-20250102235414-110eceded1dd
+require github.com/Tackem-org/Global v0.0.0-20250103214023-0444c274ccba
 
 require (
 	github.com/spf13/pflag v1.0.5 // indirect
